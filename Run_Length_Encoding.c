@@ -7,20 +7,20 @@ Author:Bongiovanni Daniele
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
-#define LUNG 100
+#define LUNG 100 //Limite di lunghezze della stinga inserita
 
-void decoding(char s[], int dim){
-    int num,cnt=0;
+void decoding(char s[], int dim){   //Procedura per effettuare decoding 
+    int num,cnt=0;  
     char sApp[dim], lett;
     bool trovato=false;
 
     for(int k=0; k<strlen(s); k++){
         if(trovato==false){
-            if((s[k])>'0' && (s[k])<='9'){
+            if((s[k])>'0' && (s[k])<='9'){  
                 num=s[k]-'0';
                 trovato=true;
             }else{
-                sApp[cnt]=s[k];
+                sApp[cnt]=s[k];     
                 cnt++;
             }
         }else{
@@ -36,7 +36,7 @@ void decoding(char s[], int dim){
     strcpy(s,sApp);
 }
 
-void encoding(char s[],int dim){
+    void encoding(char s[],int dim){    //Procedura per effettuare l'encoding
     char lett,sApp[dim];
     int cntLet=1,cnt=0;
 
@@ -71,19 +71,19 @@ int main(){
         printf("0. Esci\n1. Decoding\n2. Encoding\n");
         scanf("%d",&scelta);
 
-        switch(scelta){
-            case(0):
+        switch(scelta){     //Menù
+            case(0): //Scelta per uscita dal programma
                 printf("Uscita\n");
             break;
 
-            case(1):
+            case(1):        //Scelta per il decoding
                 printf("Inserire la stringa: ");
                 fflush(stdin);
                 scanf("%s",stringa);
                 decoding(stringa,LUNG);
                 printf("Decoding: %s\n",stringa);
             break;
-            case(2):
+            case(2):        //Scelta per l'encoding
                 printf("Inserire la stringa: ");
                 fflush(stdin);
                 scanf("%s",stringa);
