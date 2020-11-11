@@ -58,16 +58,20 @@ void randomRiproduzione(Canzone *p, int num){
             uguale=false;
             sort=rand()%num;
             for(int i=0; i<k; i++){
-                if((sort+1)==*(vNumSort+i)){
+                if(sort==*(vNumSort+i)){
                     uguale=true;
                     break;
                 }
             }
         }while(uguale==true);
-        *vNumSort=sort;
-        printf("->%d %s - %s\n",(p+(*vNumSort))->num,(p+(*vNumSort))->nome_canzone,(p+(*vNumSort))->artista);
-        vNumSort++;
+        *(vNumSort+k)=sort;
+        
+        
     }
+    for(int j=0;j<num;j++){
+        printf("->%d %s - %s\n",(p+*(vNumSort+j))->num,(p+*(vNumSort+j))->nome_canzone,(p+*(vNumSort+j))->artista);
+    }
+    free(vNumSort);
 }
 
 int main(){
@@ -85,5 +89,6 @@ int main(){
         printf("\n\nElenco riproduzione casuale:\n\n");
         randomRiproduzione(playlist,cntNumCanz);
     }
+    free(playlist);
     return 0;
 }
