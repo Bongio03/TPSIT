@@ -31,7 +31,7 @@ void enqueue(Nodo** head,Nodo** tail,Nodo* element){    //Funzione per vedere se
     element->next = NULL;
 }
 
-void push (Nodo **head, Nodo** tail, Nodo *element){    //
+void push (Nodo **head, Nodo** tail, Nodo *element){    
     Nodo* supportHead = NULL;
     Nodo* supportTail = NULL;
     Nodo* element2;
