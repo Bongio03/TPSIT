@@ -45,7 +45,7 @@ int main(){
     head=NULL;                                      //Essendo inizialmente vuota la coda, viene assegnato NULL alla testa e alla coda
     tail=NULL;
         
-    do{                                             //Ciclo per l'inserimento degli imnput
+    do{                                             //Ciclo per l'inserimento degli input
         input= (El*) malloc(sizeof(El));            //Viene allocato lo spazio per ricevere l'input
         printf("Inserire un numero intero a piacere(Inseire -1 per terminare): ");
         fflush(stdin);
