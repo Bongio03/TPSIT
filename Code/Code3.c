@@ -10,11 +10,11 @@ typedef struct nodo{
     struct nodo* next;
 }Nodo;
 
-int isEmpty(Nodo *struttura){
+int isEmpty(Nodo *struttura){                       //Funzione per vedere se la struttura è vuota o meno
     if(struttura == NULL) return 1;
     return 0;
 }
-Nodo* dequeue(Nodo** head,Nodo** tail){
+Nodo* dequeue(Nodo** head,Nodo** tail){             //Funzione per svuotare la coda di un elemento
     Nodo* ret = *head;
 
     if(isEmpty(*head)) return NULL;
@@ -24,14 +24,14 @@ Nodo* dequeue(Nodo** head,Nodo** tail){
     return ret;
 }
 
-void enqueue(Nodo** head,Nodo** tail,Nodo* element){
+void enqueue(Nodo** head,Nodo** tail,Nodo* element){    //Funzione per vedere se la struttura è vuota o meno
     if(isEmpty(*head)) *head = element;
     else    (*tail)->next = element;
     *tail = element;
     element->next = NULL;
 }
 
-void push (Nodo **head, Nodo** tail, Nodo *element){
+void push (Nodo **head, Nodo** tail, Nodo *element){    //
     Nodo* supportHead = NULL;
     Nodo* supportTail = NULL;
     Nodo* element2;
