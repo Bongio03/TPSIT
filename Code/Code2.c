@@ -12,14 +12,20 @@ typedef struct nodo{
     struct nodo* next;
 }Nodo;
 
-void enqueue(Nodo** head,Nodo** tail,Nodo* element){
+int isEmpty(Nodo *struttura){                   //Funzione per vedere se la struttura è vuota o meno
+    if(struttura == NULL) return 1;
+    return 0;
+}
+
+void enqueue(Nodo** head,Nodo** tail,Nodo* element){        //Funzione per vedere se la struttura è vuota o meno
     if(isEmpty(*head)) *head = element;
     else    (*tail)->next = element;
     *tail = element;
     element->next = NULL;
 }
 
-Nodo* dequeue(Nodo** head,Nodo** tail){
+Nodo* dequeue(Nodo** head,Nodo** tail){         //Funzione per svuotare la coda di un elemento
+    El* ret = *head;
     Nodo* ret = *head;
 
     if(isEmpty(*head)) return NULL;
@@ -29,18 +35,14 @@ Nodo* dequeue(Nodo** head,Nodo** tail){
     return ret;
 }
 
-int isEmpty(Nodo *struttura){
-    if(struttura == NULL) return 1;
-    return 0;
-}
 
-void stampaCoda(struct Nodo** head, struct Nodo** tail){
+void stampaCoda(struct Nodo** head, struct Nodo** tail){        //Metoodo per la stampa della coda. Gli elementi che vengono stampati, prima vengono tolti dalla coda
     while(!isEmpty(*head)){
         printf("%d ", dequeue(head,tail)->valore);
     }
 }
 
-void push(Nodo** head, Nodo* element){
+void push(Nodo** head, Nodo* element){                          //Metodo per il caricamento di pile
     if(isEmpty(*head)){
         *head=element;
         element->next=NULL;
@@ -50,7 +52,7 @@ void push(Nodo** head, Nodo* element){
     }
 }
 
-Nodo* pop(Nodo **head){
+Nodo* pop(Nodo **head){                                         //Metodo per togliere elementi dalle pile
     Nodo* ret= *head;
     if(isEmpty(*head)){
         return NULL;
@@ -60,9 +62,9 @@ Nodo* pop(Nodo **head){
     return ret;
 }
 
-void invertiCoda(Nodo** head,Nodo** tail){
+void invertiCoda(Nodo** head,Nodo** tail){                      //Utilizzando uan pila di appoggio, viene inveritita la coda
     Nodo* stack=NULL;
-    while(!isEmpty(*head)){
+    while(!isEmpty(*head)){                                    
         push(&stack,dequeue(head,tail));
     }
     while(!isEmpty(stack)){
@@ -76,21 +78,21 @@ int main(){
     Nodo* element;
     char scelta;
 
-    headCoda=NULL;
+    headCoda=NULL;                                              //Essendo inizialmente vuota la coda, viene assegnato NULL alla testa e alla coda
     tailCoda=NULL;
     
     do{
-        element=(Nodo*)malloc(sizeof(Nodo));
+        element=(Nodo*)malloc(sizeof(Nodo));                    //Viene allocato lo spazio per ricevere l'input                 
         printf("Inserire un numero: ");
         fflush(stdin);
         scanf("%d",&element->valore);
-        enqueue(&headCoda,&tailCoda,element);
-        printf("Inserire n se si vuole smettere di inserire: ");
+        enqueue(&headCoda,&tailCoda,element);                   //L'elemento viene caricato nella coda
+        printf("Inserire n se si vuole smettere di inserire: ");//Richiesta di terminare l'inserimento di input
         fflush(stdin);
         scanf("%c",&scelta);
     }while(scelta!='n');
 
-    invertiCoda(&headCoda,&tailCoda);
-    stampaCoda(&headCoda,&tailCoda);
+    invertiCoda(&headCoda,&tailCoda);                           //La coda viene inverita
+    stampaCoda(&headCoda,&tailCoda);                            //La coda oramai invertita viene stampata
     return 0;
 }
